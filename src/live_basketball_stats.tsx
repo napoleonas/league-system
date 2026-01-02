@@ -1437,93 +1437,41 @@ export default function LKLSystem() {
     </div>
   );
 
-  const LiveStatsInterface = () => {
-    const homePlayers = players.filter(p => p.teamId === liveGame.home.id);
-    const awayPlayers = players.filter(p => p.teamId === liveGame.away.id);
-    const [selectedHomePlayer, setSelectedHomePlayer] = useState(homePlayers[0]?.id);
-    const [selectedAwayPlayer, setSelectedAwayPlayer] = useState(awayPlayers[0]?.id);
+const LiveStatsInterface = () => {
+  const homePlayers = players.filter(p => p.teamId === liveGame.home.id);
+  const awayPlayers = players.filter(p => p.teamId === liveGame.away.id);
+  const [selectedHomePlayer, setSelectedHomePlayer] = useState(homePlayers[0]?.id);
+  const [selectedAwayPlayer, setSelectedAwayPlayer] = useState(awayPlayers[0]?.id);
 
-    return (
-      <div className="space-y-6">
-        {/* Scoreboard */}
-        <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6">
-          <div className="flex items-center justify-center gap-12 mb-4">
-            <div className="text-center">
-              <div className="text-5xl mb-2">{liveGame.home.logo}</div>
-              <h3 className="text-2xl font-bold text-white">{liveGame.home.name}</h3>
-              <div className="text-6xl font-bold text-green-400 mt-2">{liveStats.homeScore}</div>
-            </div>
-            
-            <div className="text-center">
-              <div className="text-white text-lg mb-2">{liveStats.quarter} KĖLINYS</div>
-              <input
-                type="text"
-                value={liveStats.time}
-                onChange={(e) => updateGamed text-gray-700 mb-2">Aprašymas</label>
-                  <textarea value={editForm.description} onChange={(e) => setEditForm({...editForm, description: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" rows="3"></textarea>
-                </div>
-              </>
-            )}
+  return (
+    <div className="space-y-6">
+      {/* Scoreboard */}
+      <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-xl p-6">
+        <div className="flex items-center justify-center gap-12 mb-4">
+          <div className="text-center">
+            <div className="text-5xl mb-2">{liveGame.home.logo}</div>
+            <h3 className="text-2xl font-bold text-white">{liveGame.home.name}</h3>
+            <div className="text-6xl font-bold text-green-400 mt-2">{liveStats.homeScore}</div>
+          </div>
 
-            {isPlayer && (
-              <>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Vardas Pavardė</label>
-                    <input type="text" value={editForm.name} onChange={(e) => setEditForm({...editForm, name: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Numeris</label>
-                    <input type="number" value={editForm.number} onChange={(e) => setEditForm({...editForm, number: parseInt(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Pozicija</label>
-                    <select value={editForm.position} onChange={(e) => setEditForm({...editForm, position: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg">
-                      <option value="PG">PG</option>
-                      <option value="SG">SG</option>
-                      <option value="SF">SF</option>
-                      <option value="PF">PF</option>
-                      <option value="C">C</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Ūgis (cm)</label>
-                    <input type="number" value={editForm.height} onChange={(e) => setEditForm({...editForm, height: parseInt(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Svoris (kg)</label>
-                    <input type="number" value={editForm.weight} onChange={(e) => setEditForm({...editForm, weight: parseInt(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Gimimo data</label>
-                    <input type="date" value={editForm.birthDate} onChange={(e) => setEditForm({...editForm, birthDate: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">Pilietybė (emoji)</label>
-                    <input type="text" value={editForm.nationality} onChange={(e) => setEditForm({...editForm, nationality: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">PPG</label>
-                    <input type="number" step="0.1" value={editForm.ppg} onChange={(e) => setEditForm({...editForm, ppg: parseFloat(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">RPG</label>
-                    <input type="number" step="0.1" value={editForm.rpg} onChange={(e) => setEditForm({...editForm, rpg: parseFloat(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">APG</label>
-                    <input type="number" step="0.1" value={editForm.apg} onChange={(e) => setEditForm({...editForm, apg: parseFloat(e.target.value)})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Biografija</label>
-                  <textarea value={editForm.bio} onChange={(e) => setEditForm({...editForm, bio: e.target.value})} className="w-full px-3 py-2 border border-gray-300 rounded-lg" rows="3"></textarea>
-                </div>
-                <div>
-                  <label className="block text-sm font-semibol
+          <div className="text-center">
+            <div className="text-white text-lg mb-2">{liveStats.quarter} KĖLINYS</div>
+
+            <input
+              type="text"
+              value={liveStats.time}
+              onChange={(e) => updateGameTime(e.target.value)}
+              className="w-24 text-center text-4xl font-bold text-white bg-gray-700 rounded-lg px-2 py-1"
+              placeholder="00:00"
+            />
+          </div>
+
+          <div className="text-center">
+            <div className="text-5xl mb-2">{liveGame.away.logo}</div>
+            <h3 className="text-2xl font-bold text-white">{liveGame.away.name}</h3>
+            <div className="text-6xl font-bold text-blue-400 mt-2">{liveStats.awayScore}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Toliau eina tavo likęs kodas */}
